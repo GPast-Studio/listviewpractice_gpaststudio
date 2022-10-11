@@ -1,7 +1,9 @@
 package com.gpaststudio.listviewpractice_gpaststudio
 
+import android.icu.text.Transliterator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.gpaststudio.listviewpractice_gpaststudio.adapters.StudentAdapter
 import com.gpaststudio.listviewpractice_gpaststudio.datas.Student
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,8 +30,25 @@ class MainActivity : AppCompatActivity() {
 
         studentListView.adapter = madapter
 
+        studentListView.setOnItemClickListener { parent, view, position, id ->
 
 
+            val clickedStudent = mStuduentList[position]
+
+            Toast.makeText(this, "${clickedStudent.name}이 클릭됨", Toast.LENGTH_SHORT).show()
+
+        }
+
+
+        studentListView.setOnItemLongClickListener { parent, view, position, id ->
+
+            val longClickedStudent = mStuduentList[position]
+
+            Toast.makeText(this, "${longClickedStudent.name}이 길게 클릭됨", Toast.LENGTH_SHORT).show()
+
+            return@setOnItemLongClickListener true
+
+        }
 
     }
 }
